@@ -15,7 +15,7 @@
    }
    function open_blank_and_nav(uri) {
       popup = window.open('about:blank', 'popup' + ++count, 'width=400,height=400,top=500,left=400,location=no');
-      popup.location = "uri";
+      popup.location = uri;
    }
    function open_fullscreen(uri) {
       popup = window.open(uri, 'popup' + ++count, 'fullscreen');
