@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>popup window test</title>
+</head>
+<body>
+  <script>
+   var popup = null, count = 0;
+
+   function open_popup(uri) {
+      popup = window.open(uri, 'popup' + ++count, 'width=200,height=200,top=500,left=400,location=no');
+   }
+   function open_big_popup(uri) {
+      popup = window.open(uri, 'popup' + ++count, 'width=800,height=1000,location=no');
+   }
+   function open_blank_and_nav(uri) {
+      popup = window.open('about:blank', 'popup' + ++count, 'width=400,height=400,top=500,left=400,location=no');
+      popup.location = "uri";
+   }
+   function open_fullscreen(uri) {
+      popup = window.open(uri, 'popup' + ++count, 'fullscreen');
+      popup.moveTo(0, 0);
+      popup.resizeTo(screen.width,screen.height);
+   }
+   function open_later(uri) {
+      setTimeout(function () {
+         window.open(uri, 'popup' + ++count, 'width=200,height=200,top=500,left=400,location=no');
+      }, 1);
+   }
+   function close_popup() {
+      popup.close();
+   }
+  </script>
+  <!-- top/left don't work on Chrome. -->
+  <button type="button" id="open1" onclick="open_popup('popup_target.html')">Open popup</button>
+  <button type="button" id="open2" onclick="open_popup('about:blank')">Open about:blank</button>
+  <button type="button" id="open3" onclick="open_popup('')">Open ''</button>
+  <!-- The following references to external sites are used for manual testing. -->
+  <button type="button" id="open4" onclick="open_blank_and_nav('http://cnn.com')">Open about:blank then navigate</button>
+  <button type="button" id="open5" onclick="open_fullscreen('http://ignasiak.com')">Open fullscreen</button>
+  <button type="button" id="open6" onclick="open_popup('http://bloomberg.com/live')">Open flash site</button>
+  <button type="button" id="open7" onclick="open_later('popup_target.html')">Open on timer</button>
+  <button type="button" id="close_button" onclick="close_popup()">Close last popup</button>
+  <button type="button" id="show_alert" onclick="alert('hello')">Show alert box</button>
+  <div class='bottom'>
+      <style scoped>
+         div { position: red; margin-top: 75%}
+      </style>
+     <button type="button" id="open8" onclick="open_popup('popup_target.html')">Open popup</button>
+     <button type="button" id="open9" onclick="open_popup('about:blank')">Open about:blank</button>
+     <!-- The following references to external sites are used for manual testing. -->
+     <button type="button" id="open11" onclick="open_blank_and_nav('http://ignasiak.com')">Open about:blank then navigate</button>
+     <button type="button" id="open11" onclick="open_big_popup('http://cnn.com')">Open CNN</button>
+     <button type="button" id="open12" onclick="open_fullscreen('http://ignasiak.com')">Open fullscreen</button>
+     <button type="button" id="open13" onclick="open_popup('http://bloomberg.com/live')">Open flash site</button>
+     <button type="button" id="open14" onclick="open_later('popup_target.html')">Open on timer</button>
+     <button type="button" id="close_button" onclick="close_popup()">Close last popup</button>
+  </div>
+</body>
+</html>
